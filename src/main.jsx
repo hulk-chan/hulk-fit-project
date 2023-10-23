@@ -3,11 +3,12 @@ import './index.css'
 import ActivityForm from './pages/ActivityForm/ActivityForm.jsx';
 import ActivityType from './pages/ActivityType/ActivityType.jsx';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
-import History from './pages/History/History.jsx';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Login from './pages/Login/Login.jsx';
 import SignUp from './pages/Signup/SignUp.jsx';
 import UserPage from './pages/UserPage/User.jsx'
+import History from './pages/History/History';
+import EditHistory from './pages/History/EditHistory';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/history",
     element: <History />,
+  },
+  {
+    path: "/edithistory",
+    element: <EditHistory />,
   },
 ]);
 

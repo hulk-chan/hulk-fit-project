@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import NavbarDesktop from '../../components/NavbarDesktop.jsx';
-
+import EditHistory from './EditHistory.jsx';
 
 const History = () => {
   const [cookies] = useCookies(['user']);
@@ -36,20 +37,44 @@ const History = () => {
     setReload(!reload)
   }
 
-  const editHandler = async (id) => {
-    console.log(id)
-    try {
-      const response = await axios.delete(
-        `http://localhost:4000/activitylist/edit/${id}`);
-      console.log('Response from backend:', response.status);
-      console.log(`แก้แล้ว:${response.status}`)
+  // const editHandler = async (id) => {
+  //   console.log(id)
+  //   try {
+  //     const response = await axios.put(
+  //       `http://localhost:4000/activitylist/edit/${id}`);
+  //     console.log('Response from backend:', response.status);
+  //     console.log(`แก้แล้ว:${response.status}`)
 
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
 
-    setReload(!reload)
-  }
+  //   setReload(!reload)
+  //}
+
+  // const editHandler = async (actId, actName, actType, actDescription, actDuration, actDate) => {
+  //   const requestData = {
+  //     actId: actId,
+  //     actName: actName,
+  //     actType: actType,
+  //     actDescription: actDescription,
+  //     actDuration: actDuration,
+  //     actDate: actDate,
+  //   };
+  //   try {
+  //     const response = await axios.put(
+  //       `http://localhost:4000/activitylist/edit/${id}`,
+  //       requestData);
+  //       // console.log('Response from backend:', response.status);
+  //       // console.log(`แก้แล้ว:${response.status}`)
+
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+
+  //   setReload(!reload)
+  // };
+
 
   return (
     <>
@@ -76,9 +101,11 @@ const History = () => {
                   <p>Activity Description : {items.actDescription}</p>
                   <p>Activity Duration : {items.actDuration}</p>
                   <p>Activity Date : {items.actDate}</p>
-
+                  <p>Log Date : {items.LogDate}</p>
+                  {/* <EditHistory editHandler={editHandler} actId = {items._id} /> */}
                   <div className='card-actions justify-end'>
-                    <button onClick={() => editHandler(items._id)} className='btn btn-primary'>Edit</button>
+                    {/* <button onClick={() => editHandler(items._id)} className='btn btn-primary'>Edit</button> */}
+                    <Link to={`/edithistory/${items._id}`} className="btn btn-primary">Edit</Link>
                   </div>
                 </div>
               </div>
