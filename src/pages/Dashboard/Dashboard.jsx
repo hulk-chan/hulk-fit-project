@@ -16,9 +16,7 @@ const Dashboard = () => {
   const [reload,setReload] = useState(true);
   const [apiData, setAPIData] = useState([]);
   const [apiDataPie, setAPIDataPie] = useState([]);
-  const [actName, setActName] = useState();
-  const [reload,setReload] = useState(true);
-  const [loading,setLoading] = useState(true);
+  //const [loading,setLoading] = useState(true);
   const [editedData, setEditedData] = useState(null);
 
   useEffect(() => {
