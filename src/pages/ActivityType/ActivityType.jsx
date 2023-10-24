@@ -39,17 +39,13 @@ import tdFootball from "../../../src/assets/type/desk/football.png"
 
 const ActivityType = () => {
 
-  const { state } = useLocation()
-  const id = 3
-  // state.id
-
   return (
-    <div className="">
+    <div>
       {/* ----------desktop---------- */}
-      <div className="w-9/12 min-h-screen m-auto my-10 bg-gradient-to-r from-cyan-500 to-blue-500 flex max-md:hidden">
-      <h1 className="w-[40%] text-6xl text-white text-center my-auto">Activity Type</h1>
-      <div className="w-[60%] grid grid-cols-2 justify-items-end">
-        <Link to="/activityform" state={ { iconMb: tmWalk , iconDt: tdWalk , type: "walk"}}><img src={idWalk} alt="walk icon" className="w-full h-full"/></Link>
+      <div className="w-7/12 min-h-screen m-auto bg-gradient-to-r from-cyan-500 to-blue-500 flex max-md:hidden">
+      <h1 className="w-[50%] text-6xl text-white text-center my-auto">Activity Type</h1>
+      <div className="w-[50%] grid grid-cols-2 justify-items-end">
+        <Link to="/activityform" state={ { iconMb: tmWalk , iconDt: tdWalk , type: "walk"}}><img src={idWalk} alt="walk icon" className="w-full h-full "/></Link>
         <Link to="/activityform" state={ { iconMb: tmRun , iconDt: tdRun , type: "run"}} ><img src={idRun} alt="run icon" className="w-full h-full" /></Link>
         <Link to="/activityform" state={ { iconMb: tmBicycle , iconDt: tdBicycle , type: "bicycle"}} ><img src={idBicycle} alt="bicycle icon" className="w-full h-full" /></Link>
         <Link to="/activityform" state={ { iconMb: tmSwim , iconDt: tdSwim , type: "swim"}} ><img src={idSwim} alt="swim icon" className="w-full h-full"/></Link>
@@ -62,9 +58,9 @@ const ActivityType = () => {
 
     {/* ----------mobile---------- */}
     <div className="w-[290px] m-auto md:hidden">
-      <h1 className="text-5xl text-white text-center mt-24 mb-11">Activity Type</h1>
+      <h1 className="text-5xl text-white text-center pt-12 mb-11">Activity Type</h1>
       <div className="grid grid-cols-2 justify-items-center">
-      <Link to="/activityform" state={ { iconMb: tmWalk , type: "walk"}}><img src={imWalk} alt="walk icon" className="w-[123px] h-[123px] m-2"/></Link>
+      <Link to="/activityform" state={ { iconMb: tmWalk , type: "walk"}}><img src={imWalk} alt="walk icon" className="w-[123px] h-[123px] m-2 "/></Link>
         <Link to="/activityform" state={ { iconMb: tmRun , type: "run"}} ><img src={imRun} alt="run icon" className="w-[123px] h-[123px] m-2" /></Link>
         <Link to="/activityform" state={ { iconMb: tmBicycle , type: "bicycle"}} ><img src={imBicycle} alt="bicycle icon" className="w-[123px] h-[123px] m-2" /></Link>
         <Link to="/activityform" state={ { iconMb: tmSwim , type: "swim"}} ><img src={imSwim} alt="swim icon" className="w-[123px] h-[123px] m-2"/></Link>

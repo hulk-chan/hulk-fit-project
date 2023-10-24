@@ -13,7 +13,7 @@ const User = () => {
       <div>
         {/* section 1 for Teader Text */}
         <div className='pt-16 pl-7 lg:pl-16 lg:pt-10'>
-          <h1 className='lg:text-[2.5rem] lg:pb-4 text-3xl text-white'><span className='text-[#00ECFF]'>Good</span> Morning <span className='text-[#F53FA1]'>{fullname.toUpperCase()}</span></h1>
+          <h1 className='lg:text-[2.5rem] lg:pb-4 text-3xl text-white'><span className='text-[#00ECFF]'>Good</span> Morning <span className='text-[#F53FA1]'>{fullname}</span></h1>
           <h2 className='lg:text-[2.5rem] text-2xl text-white font-light pl-8'>Let&apos;s start your day</h2>
         </div>
         {/* section 2 for Workout News */}

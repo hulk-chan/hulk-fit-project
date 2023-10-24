@@ -36,7 +36,7 @@ const Navbar = () => {
         </li>
 
         <li className='rounded-md w-[52px] h-[52px] bg-[#D9D9D9] flex justify-center items-center'>
-          <Link to={'#'}>
+          <Link to={'/profile'}>
               <IoPersonOutline className='text-black text-3xl' />
           </Link>
         </li>

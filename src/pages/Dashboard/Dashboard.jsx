@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { Line } from '@ant-design/charts';
@@ -13,6 +13,7 @@ import NavbarDesktop from '../../components/NavbarDesktop.jsx';
 const Dashboard = () => {
   const [cookies] = useCookies(['user']);
   const userID = cookies.user._id;
+  const [reload,setReload] = useState(true);
   const [apiData, setAPIData] = useState([]);
   const [apiDataPie, setAPIDataPie] = useState([]);
   const [actName, setActName] = useState();
@@ -50,7 +51,9 @@ const Dashboard = () => {
       .then((result) => {
         setAPIData(result.data);
         console.log(userID)
+        console.log(userID)
         console.log(result.data);
+        cal();
       })
       .catch((err) => console.log(err));
   }, [reload]);

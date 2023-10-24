@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 const SignUp = () => {
   const [images, setImages] = useState('');
   const [imageURLs, setImageURLs] = useState([]);
@@ -185,7 +184,7 @@ const SignUp = () => {
               Already a member?{' '}
               <Link
                 to={'/login'}
-                className='font-semibold leading-6 text-[#F540A1] hover:text-[#00ECFF]'
+                className='font-semibold leading-6 text-[#3c383a] hover:text-[#00ECFF]'
               >
                 Login.
               </Link>
@@ -196,5 +195,4 @@ const SignUp = () => {
     </div>
   );
 };
-
 export default SignUp;

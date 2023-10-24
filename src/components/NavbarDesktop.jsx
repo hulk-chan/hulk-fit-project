@@ -11,26 +11,26 @@ const NavbarDesktop = () => {
             <ul className='flex justify-between w-[100%]'>
                 <li className='group text-white transition duration-300 hover:scale-125'>
                   <Link to={"#"}>HOME
-                <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
+                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
                   </Link>
                 </li>
                 <li className='group text-white transition duration-300 hover:scale-125'>
-                  <Link to={"#"}>COMMUNITY
-                <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
+                  <Link to={"/history"}>HISTORY
+                <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
                   </Link>
                 </li>
                 <li className='group text-white transition duration-300 hover:scale-125'>
                   <Link to={"/activitytype"}>ADD ACTIVITY
-                  <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
                   </Link>
                 </li>
                 <li className='group text-white transition duration-300 hover:scale-125'>
                   <Link to={"/dashboard"}>DASHBOARD
-                  <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
                   </Link>
                 </li>
                 <li className='group text-white transition duration-300 hover:scale-125'>
-                  <Link to={"#"}>PROFILE
+                  <Link to={"/profile"}>PROFILE
                   <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-[#F53FA1]"></span>
                   </Link>
                 </li>

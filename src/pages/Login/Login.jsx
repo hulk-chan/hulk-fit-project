@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -10,6 +10,12 @@ const Login = () => {
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['authToken', 'user']);
 
+  useEffect(() => {
+    if (cookies.user) {
+      navigate('/userhome');
+    }
+  }, [cookies.user]);
+
   const loginHandler = async () => {
     const userData = {
       email: email,
@@ -20,7 +26,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:4000/login',
+        'https://hulkfit-backend-wowi.onrender.com/login',
         userData
       );
       
@@ -28,9 +34,8 @@ const Login = () => {
 
       setCookie('user', user, { path: '/' });
 
-      console.log(cookies.user.fullname);
+      console.log(`Cookie:${cookies.user.fullname}`);
 
-      navigate('/userhome');
     } catch (error) {
       setError('Invalid Credentail');
     }
