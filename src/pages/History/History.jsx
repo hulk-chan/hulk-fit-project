@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import {Link} from 'react-router-dom'
 import axios from 'axios';
 import NavbarDesktop from '../../components/NavbarDesktop.jsx';
-import EditHistory from './EditHistory.jsx';
 
 const History = () => {
   const [cookies] = useCookies(['user']);
   const userID = cookies.user._id;
   const [apiData, setAPIData] = useState([]);
   const [reload,setReload] = useState(true);
+  const [editedData, setEditedData] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/activitylist/${userID}`)
+      .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/${userID}`)
       .then((result) => {
         setAPIData(result.data);
         console.log(userID)
@@ -26,7 +25,7 @@ const History = () => {
     console.log(id)
     try {
       const response = await axios.delete(
-        `http://localhost:4000/activitylist/delete/${id}`);
+        `http://hulkfit-backend-wowi.onrender.com/activitylist/delete/${id}`);
       console.log('Response from backend:', response.status);
       console.log(`ลบแล้ว:${response.status}`)
 
@@ -37,43 +36,25 @@ const History = () => {
     setReload(!reload)
   }
 
-  // const editHandler = async (id) => {
-  //   console.log(id)
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:4000/activitylist/edit/${id}`);
-  //     console.log('Response from backend:', response.status);
-  //     console.log(`แก้แล้ว:${response.status}`)
+  const saveHandler = async (items) => {
+        
+    try {
+      const response = await axios.put(`http://hulkfit-backend-wowi.onrender.com/activitylist/update`,editedData);
 
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
+      console.log('Response from backend:', response.status);
+      console.log(`อัพเดทแล้ว:${response.status}`)
+      setEditedData(null);
+    } catch (error) {
+      console.error('Error:', error);
+    }
 
-  //   setReload(!reload)
-  //}
+    setReload(!reload)
+  }
 
-  // const editHandler = async (actId, actName, actType, actDescription, actDuration, actDate) => {
-  //   const requestData = {
-  //     actId: actId,
-  //     actName: actName,
-  //     actType: actType,
-  //     actDescription: actDescription,
-  //     actDuration: actDuration,
-  //     actDate: actDate,
-  //   };
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:4000/activitylist/edit/${id}`,
-  //       requestData);
-  //       // console.log('Response from backend:', response.status);
-  //       // console.log(`แก้แล้ว:${response.status}`)
+  const editHandler = (item) => {
+    setEditedData({ ...item });
+  };
 
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-
-  //   setReload(!reload)
-  // };
 
 
   return (
@@ -81,8 +62,7 @@ const History = () => {
       <NavbarDesktop />
       <div className='flex flex-row justify-between'>
         <div className='w-1/5 bg-red-500'></div>
-      
-        <div className='flex flex-row flex-wrap justify-center'>
+        <div className='mx-auto flex flex-row flex-wrap justify-center'>
           {apiData.map((items) => (
             <>
               <div className='card w-96 bg-base-100 shadow-xl mx-10 my-10'>
@@ -95,27 +75,96 @@ const History = () => {
                       </button>
                     
                   </div>
-                  <p>Activity ID : {items._id}</p>
-                  <p>User Id : {items.userId}</p>
-                  <p>Activity Name : {items.actName}</p>
-                  <p>Activity Description : {items.actDescription}</p>
-                  <p>Activity Duration : {items.actDuration}</p>
-                  <p>Activity Date : {items.actDate}</p>
-                  <p>Log Date : {items.LogDate}</p>
-                  {/* <EditHistory editHandler={editHandler} actId = {items._id} /> */}
+
+                  {editedData && editedData._id === items._id ? (
+                  // If the item is being edited, show input fields
+                  <>
+                  <div className='flex flex-row'>
+                    <div>Activity ID : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData._id}
+                        onChange={(e) => setEditedData({ ...editedData, _id: e.target.value })}
+                      />
+                  </div>
+                  <div className='flex flex-row'>
+                    <div>Activity Name : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData.actName}
+                        onChange={(e) => setEditedData({ ...editedData, actName: e.target.value })}
+                      />
+                  </div>
+                  <div className='flex flex-row'>
+                    <div>Activity Description : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData.actDescription}
+                        onChange={(e) => setEditedData({ ...editedData, actDescription: e.target.value })}
+                      />
+                  </div>
+                  <div className='flex flex-row'>
+                    <div>Activity Duration : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData.actDuration}
+                        onChange={(e) => setEditedData({ ...editedData, actDuration: e.target.value })}
+                      />
+                  </div>
+                  <div className='flex flex-row'>
+                    <div>Activity Date : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData.actDate}
+                        onChange={(e) => setEditedData({ ...editedData, actDate: e.target.value })}
+                      />
+                  </div>
+                  <div className='flex flex-row'>
+                    <div>User Id : &nbsp;</div>
+                    <input
+                        type='text'
+                        value={editedData.userId}
+                        onChange={(e) => setEditedData({ ...editedData, userId: e.target.value })}
+                      />
+                  </div>
+                    
+                    
+                    {/* Add input fields for other fields you want to edit */}
+                  </>
+                ) : (
+                  // If not being edited, show the data in p tags
+                  <>
+                    <p>Activity ID : {items._id}</p>
+                    <p>Activity Name : {items.actName}</p>
+                    <p>Activity Description : {items.actDescription}</p>
+                    <p>Activity Duration : {items.actDuration}</p>
+                    <p>Activity Date : {items.actDate}</p>
+                    <p>User Id : {items.userId}</p>
+                  </>
+                )}
+
+                  
                   <div className='card-actions justify-end'>
-                    {/* <button onClick={() => editHandler(items._id)} className='btn btn-primary'>Edit</button> */}
-                    <Link to={`/edithistory/${items._id}`} className="btn btn-primary">Edit</Link>
+                  {editedData && editedData._id === items._id ? (
+                    // If the item is being edited, show the "Save" button
+                    <button onClick={saveHandler} className='btn btn-primary'>
+                      Save
+                    </button>
+                  ) : (
+                    // If not being edited, show the "Edit" button
+                    <button onClick={() => editHandler(items)} className='btn btn-primary'>
+                      Edit
+                    </button>
+                  )}
                   </div>
                 </div>
               </div>
             </>
           ))}
         </div>
-
         <div className='w-1/5 bg-red-500'></div>
-      </div>
-    </>  
+    </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavbarDesktop = () => {
   return (
-    <div className='lg:flex justify-between w-screen h-[8%] hidden  backdrop-blur-3xl'>
+    <div className=' z-40 bg-black lg:flex justify-between w-screen h-[8%] hidden  backdrop-blur-3xl'>
         {/* LOGO */}
         <div className='w-[40%] '></div>
         {/* List*/}
