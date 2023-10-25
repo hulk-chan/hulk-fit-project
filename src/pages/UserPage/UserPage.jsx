@@ -48,7 +48,7 @@ const UserPage = () => {
           {/* CARD DESKTOP MODE */}
           <div className='justify-between rounded-xl h-56 m-4 p-[10px] hidden lg:flex'>
 
-            {lastActivity.slice(0,3).reverse().map((activity, index) => (
+            {lastActivity.reverse().slice(0,3).map((activity, index) => (
               <div
                 key={index}
                 className="w-[30%] bg-black/30 rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
