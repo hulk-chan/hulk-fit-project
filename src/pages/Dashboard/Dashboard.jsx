@@ -114,7 +114,7 @@ const configColumn = {
   //isGroup: true,
   isStack: true,
   xField: 'actDate',
-  yField: 'actDate',
+  yField: 'actDuration',
   seriesField: 'actType',
   legend: {
     position: 'top-right',
