@@ -15,6 +15,7 @@ const ActivityForm = () => {
   const [invalidName, setInvalidName] = useState(false);
   const [invalidDate, setInvalidDate] = useState(false);
   const [invalidDuration, setInvalidDuration] = useState(false);
+  const [invalidDes, setInvalidDes] = useState(false);
 
   const addActivity = async () => {
 
@@ -40,13 +41,13 @@ const ActivityForm = () => {
       checkData();
       console.error('Error:', error);
     }
-    navigate('/userhome')
   };
 
   const checkData = () => {
     activityName == "" ? setInvalidName(true) : setInvalidName(false)
     date == "" ? setInvalidDate(true) : setInvalidDate(false)
     duration == "" ? setInvalidDuration(true) : setInvalidDuration(false)
+    activityDes == "" ? setInvalidDes(true) : setInvalidDes(false)
   }
   
   return (
@@ -85,7 +86,7 @@ const ActivityForm = () => {
           <label
             htmlFor="activity-description"
             className="my-0.5 px-3 text-2xl ">
-            Activity Description
+            Activity Description<span className="text-red-500 p-1">*</span>
           </label>
           <textarea
             className="h-[185px] my-0.5 border-2 border-[#243c5a] rounded-lg bg-black/[.6] p-3.5  hover:border-white"
@@ -97,6 +98,11 @@ const ActivityForm = () => {
             value={activityDes}
             onChange={(evl) => setActivityDes(evl.target.value)}
           ></textarea>
+           {invalidDes && <label htmlFor="activity-name" className="text-sm font-bold text-red-700">
+          Please enter Activity Description
+          </label> }
+
+
           
           <label htmlFor="date" className="my-0.5 px-3 text-2xl ">
             Date<span className="text-red-500 p-1">*</span>
@@ -155,7 +161,7 @@ const ActivityForm = () => {
           </label> }
 
         <label htmlFor="activity-description" className="my-0.5 px-3 text-2xl ">
-          Activity Description
+          Activity Description<span className="text-red-500 p-1">*</span>
         </label>
         <textarea
           className="h-[185px] my-0.5 border-2 border-[#243c5a] rounded-lg bg-inherit p-3.5  hover:border-white"
@@ -167,6 +173,9 @@ const ActivityForm = () => {
           value={activityDes}
           onChange={(evl) => setActivityDes(evl.target.value)}
         ></textarea>
+        {invalidDes && <label htmlFor="activity-name" className="text-sm font-bold text-red-700">
+          Please enter Activity Description
+          </label> }
 
         <label htmlFor="date" className="my-0.5 px-3 text-2xl ">
           Date<span className="text-red-500 p-1">*</span>
