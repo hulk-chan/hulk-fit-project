@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['authToken', 'user']);
+  const [cookies, setCookie] = useCookies(['user']);
 
   useEffect(() => {
     if (cookies.user) {
@@ -26,7 +26,6 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        // 'https://hulkfit-backend-wowi.onrender.com/login',
         'https://hulkfit-backend-wowi.onrender.com/login',
         userData
       );
@@ -38,7 +37,7 @@ const Login = () => {
       console.log(`Cookie:${cookies.user.fullname}`);
 
     } catch (error) {
-      setError('Invalid Credentail');
+      setError('E-mail หรือ Password ผิด');
     }
   };
 
@@ -55,8 +54,8 @@ const Login = () => {
     >
       {/* <div className='hero-overlay bg-opacity-60'></div> */}
       <div className='
-      w-0 sm:w-[50%] md:w-[60%] lg:w-[70%] 
-      bg-gradient-to-b from-transparent from-65% to-black flex flex-col justify-end items-start '>
+      hidden sm:w-[50%] md:w-[60%] lg:w-[70%] 
+      bg-gradient-to-b from-transparent from-65% to-black sm:flex flex-col justify-end items-start '>
         <div className='p-10'>
           <h1 className='text-white text-5xl font-semibold py-5'></h1>
           <p className='text-white text-xl pb-5'>
@@ -66,8 +65,8 @@ const Login = () => {
         </div>
       </div>
       <div className='
-      w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] 
-      bg-[url("/src/assets/bg.png")]'>
+      w-full sm:w-[50%] md:w-[40%] lg:w-[30%] 
+      bg-[url("/src/assets/bg.png")] p-[4rem] sm:p-0'>
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <h2 className='mt-10 text-center text-6xl font-bold leading-9 tracking-tight text-white'>

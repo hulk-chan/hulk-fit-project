@@ -85,11 +85,11 @@ const SignUp = () => {
       </div>
       <div className='
       w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] 
-      bg-[url("/src/assets/bg.png")]'>
+      bg-[url("/src/assets/bg.png")] p-[4rem] sm:p-0'>
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <h2 className='mt-10 text-center text-6xl font-bold leading-9 tracking-tight text-white'>
-              Hulk <span className='text-light-blue'>Fit</span>
+              Hulk <span className='text-[#00ECFF]'>Fit</span>
             </h2>
           </div>
 
@@ -187,7 +187,7 @@ const SignUp = () => {
               Already a member?{' '}
               <Link
                 to={'/login'}
-                className='font-semibold leading-6 text-[#3c383a] hover:text-[#00ECFF]'
+                className='font-semibold leading-6 text-[#F540A1] hover:text-[#00ECFF]'
               >
                 Login.
               </Link>
