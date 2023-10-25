@@ -6,11 +6,11 @@ import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Login from './pages/Login/Login.jsx';
 import SignUp from './pages/Signup/SignUp.jsx';
-import UserPage from './pages/UserPage/User.jsx'
 import History from './pages/History/History';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 import Profile from './pages/Profile/Profile';
+import UserPage from './pages/UserPage/UserPage';
 
 const router = createBrowserRouter([
   {

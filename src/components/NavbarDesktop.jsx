@@ -5,7 +5,8 @@ const NavbarDesktop = () => {
     <div className='hidden lg:flex justify-between h-[8%] backdrop-blur-3xl'>
     {/* <div className='lg:flex justify-between w-screen h-[8%] hidden  backdrop-blur-3xl'> */}
         {/* LOGO */}
-        <div className='w-[40%] '></div>
+        <div className='w-[40%] '>
+        </div>
         {/* List*/}
         <div className='w-[60%] text-2xl flex first-letter:items-center p-4 px-10 text-white'>
             <ul className='flex justify-between w-[100%]'>
