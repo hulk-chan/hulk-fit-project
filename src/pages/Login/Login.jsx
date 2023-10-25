@@ -94,17 +94,9 @@ const Login = () => {
                     autoComplete='text'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder='Enter email'
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                    placeholder={invalidEmail ? 'Please enter Email':'Enter email'}
+                    className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 ${invalidEmail ? `placeholder:text-red-500`:`placeholder:text-gray-400`} shadow-sm ring-1 ring-inset ring-gray-300 text-white  focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                   />
-                  {invalidEmail && (
-                    <label
-                      htmlFor='activity-name'
-                      className='text-sm text-red-500 flex flex-row justify-end'
-                    >
-                      Please enter Email
-                    </label>
-                  )}
                 </div>
               </div>
 
@@ -117,17 +109,9 @@ const Login = () => {
                     autoComplete='current-password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Enter password'
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                    placeholder={invalidEmail ? 'Please enter Password':'Enter Password'}
+                    className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 ${invalidEmail ? `placeholder:text-red-500`:`placeholder:text-gray-400`} shadow-sm ring-1 ring-inset ring-gray-300 text-white  focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                   />
-                  {invalidPassword && (
-                    <label
-                      htmlFor='activity-name'
-                      className='text-sm text-red-500 flex flex-row justify-end'
-                    >
-                      Please enter Password
-                    </label>
-                  )}
                 </div>
               </div>
 

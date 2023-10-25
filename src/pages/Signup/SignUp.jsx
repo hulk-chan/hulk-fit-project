@@ -22,9 +22,6 @@ const SignUp = () => {
     if (images.length < 1) return;
     const newImageURLs = URL.createObjectURL(images);
     setImageURLs(newImageURLs);
-
-    console.log('image is :', images);
-    console.log('imageurl is :', imageURLs);
   }, [images]);
 
   const onImageChange = (e) => {
@@ -42,34 +39,28 @@ const SignUp = () => {
   };
 
   const signupHandler = async () => {
-    console.log('signup click');
-
     const formData = new FormData();
     formData.append('fullname', fullname);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('image', images);
 
-    console.log(images);
-
-    try {
-      const response = await axios.post(
-        'https://hulkfit-backend-wowi.onrender.com/signup',
-        formData
-      );
-      console.log('Response from backend:', response.data, response.status);
-      alert(`Welcome new Member your Signup Complete Code:${response.status}\n
-      Here recheck your data \n
-      fullname: ${response.data.fullname}\n
-      email: ${response.data.email}\n
-      password: ${response.data.password}\n
-      image: ${response.data.image}\n
-      date: ${response.data.date}
-      `);
-      navigate('/login');
-    } catch (error) {
-      checkData();
-      console.error('Error:', error);
+    if (passwordNotMatch) {
+      alert('pass not match')
+      return
+    } else {
+      try {
+        const response = await axios.post(
+          'https://hulkfit-backend-wowi.onrender.com/signup',
+          formData
+        );
+        alert(`
+        Welcome ${response.data.fullname}`);
+        navigate('/login');
+      } catch (error) {
+        checkData();
+        console.error('Error:', error);
+      }
     }
   };
 
@@ -126,18 +117,16 @@ const SignUp = () => {
                   type='text'
                   required
                   value={fullname}
-                  placeholder='Enter fullName'
+                  placeholder={
+                    invalidName ? 'Fullname Require' : 'Enter fullname'
+                  }
                   onChange={(e) => setFullName(e.target.value)}
-                  className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidName
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                 />
-                {invalidName && (
-                  <label
-                    htmlFor='activity-name'
-                    className='text-sm text-red-500 flex flex-row justify-end'
-                  >
-                    Please enter Full Name
-                  </label>
-                )}
               </div>
 
               <div className='mt-2'>
@@ -145,18 +134,14 @@ const SignUp = () => {
                   name='email'
                   type='text'
                   value={email}
-                  placeholder='Enter email'
+                  placeholder={invalidEmail ? 'Email Require' : 'Enter email'}
                   onChange={(e) => setEmail(e.target.value)}
-                  className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidEmail
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                 />
-                {invalidEmail && (
-                  <label
-                    htmlFor='activity-name'
-                    className='text-sm text-red-500 flex flex-row justify-end'
-                  >
-                    Please enter Email
-                  </label>
-                )}
               </div>
 
               <div className='mt-2'>
@@ -164,18 +149,16 @@ const SignUp = () => {
                   name='password'
                   type='password'
                   value={password}
-                  placeholder='Enter password'
+                  placeholder={
+                    invalidPassword ? 'Password Require' : 'Enter password'
+                  }
                   onChange={(e) => setPassword(e.target.value)}
-                  className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidPassword
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                 />
-                {invalidPassword && (
-                  <label
-                    htmlFor='activity-name'
-                    className='text-sm text-red-500 flex flex-row justify-end'
-                  >
-                    Please enter Password
-                  </label>
-                )}
               </div>
 
               <div className='mt-2'>
@@ -184,26 +167,20 @@ const SignUp = () => {
                   name='repassword'
                   type='password'
                   value={repassword}
-                  placeholder='Enter re-password'
+                  placeholder={
+                    invalidRePassword
+                      ? 'Re-Password Require'
+                      : 'Enter password' + passwordNotMatch
+                      ? 'Password Not Match'
+                      : ''
+                  }
                   onChange={(e) => setRePassword(e.target.value)}
-                  className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidRePassword
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
                 />
-                {invalidRePassword && (
-                  <label
-                    htmlFor='activity-name'
-                    className='text-sm text-red-500 flex flex-row justify-end'
-                  >
-                    Please enter Re-Password
-                  </label>
-                )}
-                {passwordNotMatch && (
-                  <label
-                    htmlFor='activity-name'
-                    className='text-sm text-red-500 flex flex-row justify-end'
-                  >
-                    Password Not Match
-                  </label>
-                )}
               </div>
 
               <div className='mt-2'>
@@ -215,7 +192,6 @@ const SignUp = () => {
                   onChange={(e) => onImageChange(e.target.files[0])}
                   className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
                 />
-                
               </div>
 
               <div>
