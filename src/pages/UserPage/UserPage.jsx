@@ -70,7 +70,7 @@ const UserPage = () => {
           
           <div className='justify-between rounded-xl h-56 m-4 p-[5px] flex lg:hidden'>
 
-            {lastActivity.slice(0,1).reverse().map((activity, index) => (
+            {lastActivity.reverse().slice(0,1).map((activity, index) => (
               <div
                 key={index}
                 className="h-[80] w-[100%] bg-relative rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
