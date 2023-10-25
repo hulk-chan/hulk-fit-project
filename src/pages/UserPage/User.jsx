@@ -56,7 +56,7 @@ const User = () => {
             <h2 className='pl-7 text-lg font-semibold text-white'>Lastest Activity</h2>
             <div className='bg-white m-6 p-5 h-[100px] rounded-sm'></div>
           </div> 
-        <Navbar />
+          <Navbar/>
         </div>
       </div>
     </div>

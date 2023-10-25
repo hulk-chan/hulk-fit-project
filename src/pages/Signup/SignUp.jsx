@@ -36,8 +36,11 @@ const SignUp = () => {
     formData.append('password', password);
     formData.append('image', images);
 
+    console.log(images)
+
     try {
       const response = await axios.post(
+        // 'https://hulkfit-backend-wowi.onrender.com/signup',
         'https://hulkfit-backend-wowi.onrender.com/signup',
         formData
       );
