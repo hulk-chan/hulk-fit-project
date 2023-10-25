@@ -92,6 +92,7 @@ const mostApiDataMostDuration = apiDataMostDuration.slice(0, 3);
 console.log(mostApiDataMostAct);
 console.log(mostApiDataMostDuration);
 
+
 //note: display total duration at top of column
 const annotations = [];
 each(groupBy(apiData, 'actDate'), (actDuration, k) => {
@@ -270,7 +271,7 @@ const configRadar = {
           </div>
 
           
-          <div className='bg-indigo-50 shadow-xl p-10 lg:w-1/3 m-1 flex flex-col  rounded-lg'>
+          <div className='bg-indigo-50 shadow-xl p-10 lg:w-1/3 m-1 flex flex-col rounded-lg overflow-auto'>
             <p className='text-2xl text-bold'>Activities Tracking</p>
             <div className='my-2'>
               <p className='text-bold '>Total activities done</p>
@@ -325,10 +326,10 @@ const configRadar = {
             <p className='text-md'>Your daily activity is shown as a percentage for each activity type</p><br/>
             <Bar {...configBar} />
           </div>
-          <div className='bg-indigo-50 shadow-xl p-10 lg:w-1/2 m-1 flex flex-col rounded-lg overflow-y-auto'>
+          <div className='bg-indigo-50 shadow-xl p-10 lg:w-1/2 m-1 flex flex-col rounded-lg overflow-auto'>
             <p className='text-2xl text-bold'>Total Activities</p>
-            <p className='text-md'>All of your activities are shown as percentages for each activity type</p><br/>
-            <div className='lg:flex lg:flex-wrap lg:flex-row lg:justify-start flex flex-col items-center '>
+            <p className='text-md'>All of your activities are shown here</p><br/>
+            <div className='lg:flex lg:flex-wrap lg:flex-row lg:justify-start flex flex-wrap flex-row justify-center '>
               {apiDataPie.map((items) => (         
                   <div className='card w-52 bg-base-100 shadow-xl mx-1 my-1'>
                     <div className='p-3'>
@@ -352,3 +353,5 @@ const configRadar = {
 };
 
 export default Dashboard;
+
+
