@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -6,7 +6,8 @@ import { useCookies } from 'react-cookie';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(false);
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
 
@@ -16,28 +17,32 @@ const Login = () => {
     }
   }, [cookies.user]);
 
+  const checkData = () => {
+    email == '' ? setInvalidEmail(true) : setInvalidEmail(false);
+    password == '' ? setInvalidPassword(true) : setInvalidPassword(false);
+  };
+
   const loginHandler = async () => {
     const userData = {
       email: email,
       password: password,
     };
 
-    console.log(userData.email, ' - ', userData.password);
+    if(email == '' || password == ''){
+      return checkData()
+    }
 
     try {
       const response = await axios.post(
         'https://hulkfit-backend-wowi.onrender.com/login',
         userData
       );
-      
+
       const user = response.data.user;
 
       setCookie('user', user, { path: '/' });
-
-      console.log(`Cookie:${cookies.user.fullname}`);
-
     } catch (error) {
-      setError('E-mail หรือ Password ผิด');
+      console.error('Error:', error);
     }
   };
 
@@ -53,9 +58,11 @@ const Login = () => {
       }}
     >
       {/* <div className='hero-overlay bg-opacity-60'></div> */}
-      <div className='
+      <div
+        className='
       hidden sm:w-[50%] md:w-[60%] lg:w-[70%] 
-      bg-gradient-to-b from-transparent from-65% to-black sm:flex flex-col justify-end items-start '>
+      bg-gradient-to-b from-transparent from-65% to-black sm:flex flex-col justify-end items-start '
+      >
         <div className='p-10'>
           <h1 className='text-white text-5xl font-semibold py-5'></h1>
           <p className='text-white text-xl pb-5'>
@@ -64,9 +71,11 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className='
+      <div
+        className='
       w-full sm:w-[50%] md:w-[40%] lg:w-[30%] 
-      bg-[url("/src/assets/bg.png")] p-[4rem] sm:p-0'>
+      bg-[url("/src/assets/bg.png")] p-[4rem] sm:p-0'
+      >
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <h2 className='mt-10 text-center text-6xl font-bold leading-9 tracking-tight text-white'>
@@ -88,6 +97,14 @@ const Login = () => {
                     placeholder='Enter email'
                     className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
                   />
+                  {invalidEmail && (
+                    <label
+                      htmlFor='activity-name'
+                      className='text-sm text-red-500 flex flex-row justify-end'
+                    >
+                      Please enter Email
+                    </label>
+                  )}
                 </div>
               </div>
 
@@ -103,8 +120,15 @@ const Login = () => {
                     placeholder='Enter password'
                     className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
                   />
+                  {invalidPassword && (
+                    <label
+                      htmlFor='activity-name'
+                      className='text-sm text-red-500 flex flex-row justify-end'
+                    >
+                      Please enter Password
+                    </label>
+                  )}
                 </div>
-                {error && <div className='text-red-500'>{error}</div>}
               </div>
 
               <div>
