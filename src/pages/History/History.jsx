@@ -96,7 +96,9 @@ const History = () => {
                 <div
                   className={`card w-[30rem] shadow-xl m-10`}
                   style={{
-                    backgroundImage:`url(/src/assets/type/desk/${items.actType}.png)`,
+                    backgroundImage:
+                    // `url(/src/assets/type/desk/${items.actType}.png)`,
+                    `url(../../../src/assets/type/desk/${items.actType}.png)`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
