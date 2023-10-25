@@ -20,7 +20,6 @@ function Profile() {
     axios
       .get(`https://hulkfit-backend-wowi.onrender.com/user/${userID}`)
       .then((result) => {
-        console.log(result.data.fullname)
         setFullname(result.data.fullname)
         setEmail(result.data.email)
         setPassword(result.data.password)
@@ -160,6 +159,7 @@ function Profile() {
                 </button>
                 </div>
               )}
+              <Navbar />
     </div>
     </>
   );
