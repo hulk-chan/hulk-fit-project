@@ -1,4 +1,6 @@
-import { Link , useLocation} from "react-router-dom";
+import { Link } from "react-router-dom";
+import NavbarDesktop from '../../components/NavbarDesktop.jsx';
+import Navbar from '../../components/Navbar.jsx';
 
 import imWalk from "../../../src/assets/icon/mobile/walk.png"
 import imRun from "../../../src/assets/icon/mobile/run.png"
@@ -37,10 +39,13 @@ import tdHike from "../../../src/assets/type/desk/hike.png"
 import tdFootball from "../../../src/assets/type/desk/football.png"
 
 
+
 const ActivityType = () => {
 
   return (
-    <div className="flex flex-row justify-center items-center w-full h-screen">
+    <div className="">
+      <NavbarDesktop/>
+      <div className="flex flex-row justify-center items-center w-full h-screen">
       {/* ----------desktop---------- */}
       <div className="w-7/12 bg-gradient-to-r from-cyan-500 to-blue-500 flex max-md:hidden">
       <h1 className="w-[50%] text-6xl text-white text-center my-auto">Activity Type</h1>
@@ -68,9 +73,11 @@ const ActivityType = () => {
         <Link to="/activityform" state={ { iconMb: tmSkateboard , type: "skateboard"}} ><img src={imSkateboard} alt="skateboard icon" className="w-[123px] h-[123px] m-2"/></Link>
         <Link to="/activityform" state={ { iconMb: tmHike , type: "hike"}} ><img src={imHike} alt="hike icon" className="w-[123px] h-[123px] m-2" /></Link>
         <Link to="/activityform" state={ { iconMb: tmFootball , type: "football"}} ><img src={imFootball} alt="football icon" className="w-[123px] h-[123px] m-2"/></Link>
-      
+
       </div>
     </div>
+    </div>
+    <Navbar/>
     </div>
   )
 }
