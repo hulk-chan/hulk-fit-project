@@ -293,7 +293,7 @@ const configRadar = {
                   </div>           
                 ))}
               </div>
-              <div className='flex flex-col '> 
+              {/* <div className='flex flex-col '> 
                 <p className='text-bold text-center'>Top frequent</p>
                 {mostApiDataMostAct.map((items) => (         
                   <div className='card w-52 bg-base-100 shadow-xl mx-1 my-1'>
@@ -304,7 +304,7 @@ const configRadar = {
                     </div>
                   </div>           
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
