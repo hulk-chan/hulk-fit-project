@@ -20,10 +20,10 @@ function Profile() {
     axios
       .get(`https://hulkfit-backend-wowi.onrender.com/${userID}`)
       .then((result) => {
-        setFullname(result.data[0].fullname)
-        setEmail(result.data[0].email)
-        setPassword(result.data[0].password)
-        result.data[0].image ? (setImage(result.data[0].image)) : (setImage(user))
+        setFullname(result.data.fullname)
+        setEmail(result.data.email)
+        setPassword(result.data.password)
+        result.data.image ? (setImage(result.data.image)) : (setImage(user))
       })
       .catch((err) => console.log(err));
   }, [reload]);

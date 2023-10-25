@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [loading,setLoading] = useState(true);
   useEffect(() => {
     axios
-    .get(`http://localhost:4000/activitylist/dashboard/column/${userID}`)
-    // .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/column/${userID}`)
+    // .get(`http://localhost:4000/activitylist/dashboard/column/${userID}`)
+    .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/column/${userID}`)
       .then((result) => {
         setAPIData(result.data);
         console.log(result.data);
@@ -27,8 +27,8 @@ const Dashboard = () => {
   }, [reload]);
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/activitylist/dashboard/pie/${userID}`)
-      // .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/pie/${userID}`)
+      // .get(`http://localhost:4000/activitylist/dashboard/pie/${userID}`)
+       .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/pie/${userID}`)
       .then((result) => {
         setAPIDataPie(result.data);
         console.log(result.data);
@@ -39,8 +39,8 @@ const Dashboard = () => {
   }, [reload]);
   useEffect(() => {
     axios
-     .get(`http://localhost:4000/activitylist/${userID}`)
-      // .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/${userID}`)
+    //  .get(`http://localhost:4000/activitylist/${userID}`)
+      .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/${userID}`)
       .then((result) => {
         setAPIData(result.data);
         console.log(userID)
@@ -134,7 +134,7 @@ const Dashboard = () => {
   };
   return (
     <>
-      <div className=''>
+      <div className='w-[80%]'>
         <NavbarDesktop />
         <div className='content flex flex-row justify-between gap-20'>
           <div className='section-graph flex flex-col '>
