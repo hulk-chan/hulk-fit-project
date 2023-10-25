@@ -8,8 +8,12 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRePassword] = useState('');
+  const [invalidName, setInvalidName] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(false);
+  const [invalidRePassword, setInvalidRePassword] = useState(false);
+  const [passwordNotMatch, setPasswordNotMatch] = useState(false);
   const navigate = useNavigate();
-
 
   const defaultImage =
     'https://t3.ftcdn.net/jpg/05/00/54/28/360_F_500542898_LpYSy4RGAi95aDim3TLtSgCNUxNlOlcM.jpg';
@@ -18,45 +22,45 @@ const SignUp = () => {
     if (images.length < 1) return;
     const newImageURLs = URL.createObjectURL(images);
     setImageURLs(newImageURLs);
-
-    console.log('image is :', images);
-    console.log('imageurl is :', imageURLs);
   }, [images]);
 
   const onImageChange = (e) => {
     setImages(e);
   };
 
+  const checkData = () => {
+    fullname == '' ? setInvalidName(true) : setInvalidName(false);
+    email == '' ? setInvalidEmail(true) : setInvalidEmail(false);
+    password == '' ? setInvalidPassword(true) : setInvalidPassword(false);
+    repassword == '' ? setInvalidRePassword(true) : setInvalidRePassword(false);
+    password != repassword
+      ? setPasswordNotMatch(true)
+      : setPasswordNotMatch(false);
+  };
+
   const signupHandler = async () => {
-    console.log('signup click');
-    
     const formData = new FormData();
     formData.append('fullname', fullname);
     formData.append('email', email);
     formData.append('password', password);
     formData.append('image', images);
 
-    console.log(images)
-
-    try {
-      const response = await axios.post(
-        // 'https://hulkfit-backend-wowi.onrender.com/signup',
-        'https://hulkfit-backend-wowi.onrender.com/signup',
-        formData
-      );
-      console.log('Response from backend:', response.data, response.status);
-      alert(`Welcome new Member your Signup Complete Code:${response.status}\n
-      Here recheck your data \n
-      fullname: ${response.data.fullname}\n
-      email: ${response.data.email}\n
-      password: ${response.data.password}\n
-      image: ${response.data.image}\n
-      date: ${response.data.date}
-      `)
-      navigate('/login')
-
-    } catch (error) {
-      console.error('Error:', error);
+    if (passwordNotMatch) {
+      alert('pass not match')
+      return
+    } else {
+      try {
+        const response = await axios.post(
+          'https://hulkfit-backend-wowi.onrender.com/signup',
+          formData
+        );
+        alert(`
+        Welcome ${response.data.fullname}`);
+        navigate('/login');
+      } catch (error) {
+        checkData();
+        console.error('Error:', error);
+      }
     }
   };
 
@@ -72,9 +76,11 @@ const SignUp = () => {
       }}
     >
       {/* <div className='hero-overlay bg-opacity-60'></div> */}
-      <div className='
+      <div
+        className='
       w-0 sm:w-[50%] md:w-[60%] lg:w-[70%]  
-      bg-gradient-to-b from-transparent from-65% to-black flex flex-col justify-end items-start '>
+      bg-gradient-to-b from-transparent from-65% to-black flex flex-col justify-end items-start '
+      >
         <div className='p-10'>
           <h1 className='text-white text-5xl font-semibold py-5'>Hulk Fit</h1>
           <p className='text-white text-xl pb-5'>
@@ -83,13 +89,15 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-      <div className='
+      <div
+        className='
       w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] 
-      bg-[url("/src/assets/bg.png")]'>
+      bg-[url("/src/assets/bg.png")] p-[4rem] sm:p-0'
+      >
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
           <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
             <h2 className='mt-10 text-center text-6xl font-bold leading-9 tracking-tight text-white'>
-              Hulk <span className='text-light-blue'>Fit</span>
+              Hulk <span className='text-[#00ECFF]'>Fit</span>
             </h2>
           </div>
 
@@ -103,74 +111,88 @@ const SignUp = () => {
 
           <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
             <form className='space-y-6'>
-              
-                <div className='mt-2'>
-                  <input
-                    name='fullname'
-                    type='text'
-                    required
-                    value={fullname}
-                    placeholder='Enter fullName'
-                    onChange={(e) => setFullName(e.target.value)}
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
-                  />
-                </div>
-              
+              <div className='mt-2'>
+                <input
+                  name='fullname'
+                  type='text'
+                  required
+                  value={fullname}
+                  placeholder={
+                    invalidName ? 'Fullname Require' : 'Enter fullname'
+                  }
+                  onChange={(e) => setFullName(e.target.value)}
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidName
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
+                />
+              </div>
 
-              
-                <div className='mt-2'>
-                  <input
-                    name='email'
-                    type='text'
-                    value={email}
-                    placeholder='Enter email'
-                    onChange={(e) => setEmail(e.target.value)}
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
-                  />
-                </div>
-              
+              <div className='mt-2'>
+                <input
+                  name='email'
+                  type='text'
+                  value={email}
+                  placeholder={invalidEmail ? 'Email Require' : 'Enter email'}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidEmail
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
+                />
+              </div>
 
-              
-                <div className='mt-2'>
-                  <input
-                    name='password'
-                    type='password'
-                    value={password}
-                    placeholder='Enter password'
-                    onChange={(e) => setPassword(e.target.value)}
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
-                  />
-                </div>
-              
+              <div className='mt-2'>
+                <input
+                  name='password'
+                  type='password'
+                  value={password}
+                  placeholder={
+                    invalidPassword ? 'Password Require' : 'Enter password'
+                  }
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidPassword
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
+                />
+              </div>
 
-              
-                
-                <div className='mt-2'>
-                  <input
-                    id='repassword'
-                    name='repassword'
-                    type='password'
-                    value={repassword}
-                    placeholder='Enter re-password'
-                    onChange={(e) => setRePassword(e.target.value)}
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
-                  />
-                </div>
-              
+              <div className='mt-2'>
+                <input
+                  id='repassword'
+                  name='repassword'
+                  type='password'
+                  value={repassword}
+                  placeholder={
+                    invalidRePassword
+                      ? 'Re-Password Require'
+                      : 'Enter password' + passwordNotMatch
+                      ? 'Password Not Match'
+                      : ''
+                  }
+                  onChange={(e) => setRePassword(e.target.value)}
+                  className={`bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 ${
+                    invalidRePassword
+                      ? 'placeholder:text-red-500'
+                      : 'placeholder:text-gray-400'
+                  } focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6`}
+                />
+              </div>
 
-              
-                
-                <div className='mt-2'>
-                  <input
-                    name='image'
-                    type='file'
-                    multiple
-                    accept='image/*'
-                    onChange={(e) => onImageChange(e.target.files[0])}
-                    className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
-                  />
-                </div>
-              
+              <div className='mt-2'>
+                <input
+                  name='image'
+                  type='file'
+                  multiple
+                  accept='image/*'
+                  onChange={(e) => onImageChange(e.target.files[0])}
+                  className='bg-transparent block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-100 sm:text-sm sm:leading-6'
+                />
+              </div>
 
               <div>
                 <button
@@ -187,7 +209,7 @@ const SignUp = () => {
               Already a member?{' '}
               <Link
                 to={'/login'}
-                className='font-semibold leading-6 text-[#3c383a] hover:text-[#00ECFF]'
+                className='font-semibold leading-6 text-[#F540A1] hover:text-[#00ECFF]'
               >
                 Login.
               </Link>
