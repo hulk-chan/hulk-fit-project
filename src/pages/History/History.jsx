@@ -17,7 +17,8 @@ const History = () => {
     axios
       .get(`https://hulkfit-backend-wowi.onrender.com/activitylist/${userID}`)
       .then((result) => {
-        setAPIData(result.data);
+        const sortedData = [...result.data].sort((a, b) => new Date(b.actDate) - new Date(a.actDate));
+        setAPIData(sortedData);
         console.log(userID);
         console.log(result.data);
       })
@@ -93,10 +94,10 @@ const History = () => {
             {apiData.map((items) => (
               <>
                 <div
-                  className={`card w-[310px] mx-auto mt-10 lg:w-[30rem] shadow-xl lg:m-10`}
+                  className={`card w-[310px] mx-auto mt-10 lg:w-[30rem] shadow-xl lg:m-10 transform scale-100 hover:scale-[1.02] transition-transform duration-500`}
                 >
                   <img
-                    src={`/src/assets/type/desk/${items.actType}.png`}
+                    src={`https://hulkfit-backend-wowi.onrender.com/uploads/${items.actType}.png`}
                     className='background-img'
                   />
                   <div>
