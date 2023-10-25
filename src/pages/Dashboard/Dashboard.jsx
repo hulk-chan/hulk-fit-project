@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/column/${userID}`)
+      .get(`https://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/column/${userID}`)
       .then((result) => {
         setAPIData(result.data);
         console.log(result.data);
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/pie/${userID}`)
+      .get(`https://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/pie/${userID}`)
       .then((result) => {
         setAPIDataPie(result.data);
         console.log(result.data);
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://hulkfit-backend-wowi.onrender.com/sumofduration/${userID}`)
+      .get(`https://hulkfit-backend-wowi.onrender.com/sumofduration/${userID}`)
       .then((result) => {
         setAPIDataSumDuration(result.data);
         console.log(result.data);
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://hulkfit-backend-wowi.onrender.com/aggregate/mostact/${userID}`)
+      .get(`https://hulkfit-backend-wowi.onrender.com/aggregate/mostact/${userID}`)
       .then((result) => {
         setAPIDataMostAct(result.data);
         console.log(result.data);
@@ -71,7 +71,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://hulkfit-backend-wowi.onrender.com/aggregate/mostduration/${userID}`)
+      .get(`https://hulkfit-backend-wowi.onrender.com/aggregate/mostduration/${userID}`)
       .then((result) => {
         setAPIDataMostDuration(result.data);
         console.log(result.data);
