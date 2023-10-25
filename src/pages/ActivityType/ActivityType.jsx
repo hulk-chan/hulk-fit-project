@@ -40,9 +40,9 @@ import tdFootball from "../../../src/assets/type/desk/football.png"
 const ActivityType = () => {
 
   return (
-    <div>
+    <div className="flex flex-row justify-center items-center w-full h-screen">
       {/* ----------desktop---------- */}
-      <div className="w-7/12 min-h-screen m-auto bg-gradient-to-r from-cyan-500 to-blue-500 flex max-md:hidden">
+      <div className="w-7/12 bg-gradient-to-r from-cyan-500 to-blue-500 flex max-md:hidden">
       <h1 className="w-[50%] text-6xl text-white text-center my-auto">Activity Type</h1>
       <div className="w-[50%] grid grid-cols-2 justify-items-end">
         <Link to="/activityform" state={ { iconMb: tmWalk , iconDt: tdWalk , type: "walk"}}><img src={idWalk} alt="walk icon" className="w-full h-full "/></Link>

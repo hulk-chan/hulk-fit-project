@@ -1,3 +1,4 @@
+import './CustomCss.css';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -11,7 +12,6 @@ const History = () => {
   const [apiData, setAPIData] = useState([]);
   const [reload, setReload] = useState(true);
   const [editedData, setEditedData] = useState(null);
-  const [img, setImg] = useState('');
 
   useEffect(() => {
     axios
@@ -94,203 +94,203 @@ const History = () => {
               <>
                 <div
                   className={`card w-[310px] mx-auto mt-10 lg:w-[30rem] shadow-xl lg:m-10`}
-                  style={{
-                    backgroundImage: `url(/src/assets/type/desk/${items.actType}.png)`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
                 >
-                  <div className='card-body'>
-                    <div className='flex flex-col py-4 lg:py-0 lg:flex-row justify-between items-center bg-black/90 rounded-lg px-4'>
-                      <div>
-                        <h2 className='card-title text-white text-[2rem]'>
-                          {items.actType.toUpperCase()}
-                        </h2>
+                  <img
+                    src={`/src/assets/type/desk/${items.actType}.png`}
+                    className='background-img'
+                  />
+                  <div>
+                    <div className='card-body'>
+                      <div className='flex flex-col py-4 lg:py-0 lg:flex-row justify-between items-center bg-black/90 rounded-lg px-4'>
+                        <div>
+                          <h2 className='card-title text-white text-[2rem]'>
+                            {items.actType.toUpperCase()}
+                          </h2>
+                        </div>
+                        <div className='card-actions flex flex-row justify-center items-center'>
+                          {editedData && editedData._id === items._id ? (
+                            <div className='flex flex-row my-2'>
+                              <div>
+                                <button
+                                  onClick={() => deleteHandler(items._id)}
+                                  className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
+                                >
+                                  <AiOutlineDelete size={25} />
+                                </button>
+                              </div>
+                              <div>
+                                <button
+                                  onClick={() => saveHandler()}
+                                  className='text-black bg-[#00ECFF] h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center ml-3'
+                                >
+                                  <AiOutlineSave size={25} />
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className='flex flex-row my-2'>
+                              <div>
+                                <button
+                                  onClick={() => deleteHandler(items._id)}
+                                  className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
+                                >
+                                  <AiOutlineDelete size={25} />
+                                </button>
+                              </div>
+                              <div>
+                                <button
+                                  onClick={() => editHandler(items)}
+                                  className='text-black bg-[#00ECFF] h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center ml-3'
+                                >
+                                  <AiOutlineEdit size={25} />
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className='card-actions flex flex-row justify-center items-center'>
-                        {editedData && editedData._id === items._id ? (
-                          <div className='flex flex-row my-2'>
-                            <div>
-                              <button
-                                onClick={() => deleteHandler(items._id)}
-                                className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
-                              >
-                                <AiOutlineDelete size={25} />
-                              </button>
+
+                      {editedData && editedData._id === items._id ? (
+                        <div className='bg-black/90 rounded-lg p-4'>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Activity Name : &nbsp;
                             </div>
-                            <div>
-                              <button
-                                onClick={() => saveHandler()}
-                                className='text-black bg-[#00ECFF] h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center ml-3'
-                              >
-                                <AiOutlineSave size={25} />
-                              </button>
-                            </div>
+
+                            <input
+                              className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
+                              type='text'
+                              value={editedData.actName}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actName: e.target.value,
+                                })
+                              }
+                            />
                           </div>
-                        ) : (
-                          <div className='flex flex-row my-2'>
-                            <div>
-                              <button
-                                onClick={() => deleteHandler(items._id)}
-                                className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
-                              >
-                                <AiOutlineDelete size={25} />
-                              </button>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Description : &nbsp;
                             </div>
-                            <div>
-                              <button
-                                onClick={() => editHandler(items)}
-                                className='text-black bg-[#00ECFF] h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center ml-3'
-                              >
-                                <AiOutlineEdit size={25} />
-                              </button>
-                            </div>
+                            <input
+                              className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
+                              type='text'
+                              value={editedData.actDescription}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDescription: e.target.value,
+                                })
+                              }
+                            />
                           </div>
-                        )}
-                      </div>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Duration{' (Min)'} : &nbsp;
+                            </div>
+                            <input
+                              className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
+                              type='text'
+                              value={editedData.actDuration}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDuration: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Date : &nbsp;
+                            </div>
+                            <input
+                              className='bg-transparent text-black border border-solid border-black rounded-md px-2 w-2/3'
+                              style={{ filter: 'invert(100%)' }}
+                              type='date'
+                              value={editedData.actDate}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDate: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className='bg-black/90 rounded-lg p-4'>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Activity Name : &nbsp;
+                            </div>
+
+                            <input
+                              className='bg-transparent text-white  px-2 w-full lg:w-2/3'
+                              type='text'
+                              value={items.actName}
+                              disabled
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actName: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Description : &nbsp;
+                            </div>
+                            <input
+                              className='bg-transparent text-white  px-2 w-full lg:w-2/3'
+                              type='text'
+                              disabled
+                              value={items.actDescription}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDescription: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Duration{' (Min)'} : &nbsp;
+                            </div>
+                            <input
+                              className='bg-transparent text-white  px-2 w-full lg:w-2/3'
+                              type='text'
+                              value={items.actDuration}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDuration: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                          <div className='flex flex-col lg:flex-row p-2 w-full'>
+                            <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                              Date : &nbsp;
+                            </div>
+                            <input
+                              className='bg-transparent text-white  px-2 w-full lg:w-2/3'
+                              type='text'
+                              value={formatDate(items.actDate)}
+                              onChange={(e) =>
+                                setEditedData({
+                                  ...editedData,
+                                  actDate: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-
-                    {editedData && editedData._id === items._id ? (
-                      <div className='bg-black/90 rounded-lg p-4'>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Activity Name : &nbsp;
-                          </div>
-
-                          <input
-                            className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
-                            type='text'
-                            value={editedData.actName}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actName: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Description : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
-                            type='text'
-                            value={editedData.actDescription}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDescription: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Duration{' (Min)'} : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
-                            type='text'
-                            value={editedData.actDuration}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDuration: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Date : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-black border border-solid border-black rounded-md px-2 w-2/3'
-                            style={{ filter: 'invert(100%)' }}
-                            type='date'
-                            value={editedData.actDate}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDate: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <div className='bg-black/90 rounded-lg p-4'>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Activity Name : &nbsp;
-                          </div>
-
-                          <input
-                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
-                            type='text'
-                            value={items.actName}
-                            disabled
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actName: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Description : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
-                            type='text'
-                            disabled
-                            value={items.actDescription}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDescription: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Duration{' (Min)'} : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
-                            type='text'
-                            value={items.actDuration}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDuration: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className='flex flex-col lg:flex-row p-2 w-full'>
-                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
-                            Date : &nbsp;
-                          </div>
-                          <input
-                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
-                            type='text'
-                            value={formatDate(items.actDate)}
-                            onChange={(e) =>
-                              setEditedData({
-                                ...editedData,
-                                actDate: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </>
@@ -301,7 +301,6 @@ const History = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
