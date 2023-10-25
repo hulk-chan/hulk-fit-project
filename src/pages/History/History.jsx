@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { AiOutlineDelete, AiOutlineEdit, AiOutlineSave } from 'react-icons/ai';
 import NavbarDesktop from '../../components/NavbarDesktop.jsx';
-import Navbar from '../../components/Navbar.jsx'
+import Navbar from '../../components/Navbar.jsx';
 
 const History = () => {
   const [cookies] = useCookies(['user']);
@@ -11,6 +11,7 @@ const History = () => {
   const [apiData, setAPIData] = useState([]);
   const [reload, setReload] = useState(true);
   const [editedData, setEditedData] = useState(null);
+  const [img, setImg] = useState('');
 
   useEffect(() => {
     axios
@@ -86,25 +87,22 @@ const History = () => {
     <div className='h-screen'>
       <NavbarDesktop />
       <div className='flex flex-row'>
-        <div className='w-0/3'>
-          
-        </div>
+        <div className='w-0/3'></div>
         <div className='w-3/3'>
-          <div className='flex flex-row flex-wrap p-10'>
+          <div className='flex flex-row justify-center flex-wrap lg:p-10 '>
             {apiData.map((items) => (
               <>
                 <div
-                  className={`card w-[30rem] shadow-xl m-10 bg-[url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v1016-c-08_1-ksh6mza3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=f584d8501c27c5f649bc2cfce50705c0)]`}
-                  // style={{
-                  //   backgroundImage:
-                  //   `url(/src/assets/type/desk/${items.actType}.png)`,
-                  //   backgroundSize: 'cover',
-                  //   backgroundRepeat: 'no-repeat',
-                  //   backgroundPosition: 'center',
-                  // }}
+                  className={`card w-[310px] mx-auto mt-10 lg:w-[30rem] shadow-xl lg:m-10`}
+                  style={{
+                    backgroundImage: `url(/src/assets/type/desk/${items.actType}.png)`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                  }}
                 >
                   <div className='card-body'>
-                    <div className='flex flex-row justify-between items-center bg-black/90 rounded-lg px-4'>
+                    <div className='flex flex-col py-4 lg:py-0 lg:flex-row justify-between items-center bg-black/90 rounded-lg px-4'>
                       <div>
                         <h2 className='card-title text-white text-[2rem]'>
                           {items.actType.toUpperCase()}
@@ -155,10 +153,11 @@ const History = () => {
 
                     {editedData && editedData._id === items._id ? (
                       <div className='bg-black/90 rounded-lg p-4'>
-                        <div className='flex flex-row p-2 w-full'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Activity Name : &nbsp;
                           </div>
+
                           <input
                             className='bg-transparent text-white border border-solid border-white rounded-md px-2 w-2/3'
                             type='text'
@@ -171,8 +170,8 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Description : &nbsp;
                           </div>
                           <input
@@ -187,8 +186,8 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Duration{' (Min)'} : &nbsp;
                           </div>
                           <input
@@ -203,27 +202,33 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>Date : &nbsp;</div>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                            Date : &nbsp;
+                          </div>
                           <input
                             className='bg-transparent text-black border border-solid border-black rounded-md px-2 w-2/3'
                             style={{ filter: 'invert(100%)' }}
                             type='date'
                             value={editedData.actDate}
                             onChange={(e) =>
-                              setEditedData({...editedData,actDate: e.target.value})
+                              setEditedData({
+                                ...editedData,
+                                actDate: e.target.value,
+                              })
                             }
                           />
                         </div>
                       </div>
                     ) : (
                       <div className='bg-black/90 rounded-lg p-4'>
-                        <div className='flex flex-row p-2 w-full'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Activity Name : &nbsp;
                           </div>
+
                           <input
-                            className='bg-transparent text-white  px-2 w-2/3'
+                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
                             type='text'
                             value={items.actName}
                             disabled
@@ -235,12 +240,12 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Description : &nbsp;
                           </div>
                           <input
-                            className='bg-transparent text-white  px-2 w-2/3'
+                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
                             type='text'
                             disabled
                             value={items.actDescription}
@@ -252,12 +257,12 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
                             Duration{' (Min)'} : &nbsp;
                           </div>
                           <input
-                            className='bg-transparent text-white  px-2 w-2/3'
+                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
                             type='text'
                             value={items.actDuration}
                             onChange={(e) =>
@@ -268,10 +273,12 @@ const History = () => {
                             }
                           />
                         </div>
-                        <div className='flex flex-row w-full p-2'>
-                          <div className='text-white w-1/3'>Date : &nbsp;</div>
+                        <div className='flex flex-col lg:flex-row p-2 w-full'>
+                          <div className='text-white w-full lg:w-1/3 mb-3 lg:mb-0'>
+                            Date : &nbsp;
+                          </div>
                           <input
-                            className='bg-transparent text-white  px-2 w-2/3'
+                            className='bg-transparent text-white  px-2 w-full lg:w-2/3'
                             type='text'
                             value={formatDate(items.actDate)}
                             onChange={(e) =>
@@ -288,10 +295,13 @@ const History = () => {
                 </div>
               </>
             ))}
+            <div className='lg:hidden fixed bottom-0 left-0 right-0 bg-[url(https://cdn.discordapp.com/attachments/1131476233998307398/1166706944229257307/bg.png?ex=654b7783&is=65390283&hm=82e9440be696e5268b1dcc3877cd32f91912e39aecffcd8790e0dec03a943b6a&)] py-3'>
+              <Navbar />
+            </div>
           </div>
         </div>
       </div>
-      <Navbar/>
+
     </div>
   );
 };
