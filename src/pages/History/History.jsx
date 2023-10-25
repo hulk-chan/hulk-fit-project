@@ -84,6 +84,13 @@ const History = () => {
     return `${day} ${month} ${year}`;
   }
 
+  const confirmDelete = (id) => {
+    const confirmed = window.confirm('Are you sure you want to delete this activity?');
+    if (confirmed) {
+      deleteHandler(id);
+    }
+  };
+
   return (
     <div className='h-screen'>
       <NavbarDesktop />
@@ -113,7 +120,7 @@ const History = () => {
                             <div className='flex flex-row my-2'>
                               <div>
                                 <button
-                                  onClick={() => deleteHandler(items._id)}
+                                  onClick={() => confirmDelete(items._id)}
                                   className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
                                 >
                                   <AiOutlineDelete size={25} />
@@ -132,7 +139,7 @@ const History = () => {
                             <div className='flex flex-row my-2'>
                               <div>
                                 <button
-                                  onClick={() => deleteHandler(items._id)}
+                                  onClick={() => confirmDelete(items._id)}
                                   className='text-black bg-[#F540A1]  h-[2.5rem] w-[2.5rem] rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:text-[#fefefe] flex flex-row justify-center items-center'
                                 >
                                   <AiOutlineDelete size={25} />
