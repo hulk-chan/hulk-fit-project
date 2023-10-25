@@ -46,22 +46,22 @@ const UserPage = () => {
             <div className='pl-7 text-white text-xl p-[4px] lg:text-2xl lg:p-2 lg:pl-16'>YOUR LASTED ACTIVITY</div>
           </div>
           {/* CARD DESKTOP MODE */}
-          <div className='justify-between rounded-xl h-56 m-4 p-[5px] hidden lg:flex'>
+          <div className='justify-between rounded-xl h-56 m-4 p-[10px] hidden lg:flex'>
 
             {lastActivity.slice(0,3).reverse().map((activity, index) => (
               <div
                 key={index}
-                className="h-[80] w-[30%] bg-relative rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
+                className="w-[30%] bg-black/30 rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
               >
-                <div className="h-[30%] rounded-t-3xl bg-gradient-to-r from-[#00ECFF] to-[#F53FA1]">
+                <div className="h-[25%] rounded-t-3xl bg-gradient-to-r from-[#00ECFF]/80 to-[#F53FA1]/80">
                   {/* Card */}
                 </div>
-                <div className="pl-5 pt-[10px] text-[16px] card">
-                  <p>ACTIVITY TYPE: {activity.actType.toUpperCase()}</p>
-                  <p>DATE: {activity.actDate}</p>
-                  <p>ACTIVITY NAME: {activity.actName}</p>
-                  <p>ACTIVITY DESCRIPTION: {activity.actDescription}</p>
-                  <p>ACTIVITY DURATION (Mins): {activity.actDuration}</p>
+                <div className="pl-5 pt-[10px] text-[16px]">
+                  <p className='text-[#00ECFF]/80'>ACTIVITY TYPE : <span className='text-white/90'>{activity.actType.toUpperCase()}</span></p>
+                  <p className='text-[#00ECFF]/80'>DATE : <span className='text-white/90'>{activity.actDate}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY NAME : <span className='text-white'>{activity.actName}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY DESCRIPTION : <span className='text-white'>{activity.actDescription}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY DURATION (Mins) : <span className='text-white'>{activity.actDuration}</span></p>
                 </div>
               </div>
             ))}
@@ -73,17 +73,17 @@ const UserPage = () => {
             {lastActivity.reverse().slice(0,1).map((activity, index) => (
               <div
                 key={index}
-                className="h-[80] w-[100%] bg-relative rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
+                className="h-[80] w-[100%] bg-black/30 rounded-3xl text-white text-1xl cursor-pointer hover:scale-105 transition ease-in-out border border-slate-700"
               >
-                <div className="h-[25%] rounded-t-3xl bg-gradient-to-r from-[#00ECFF] to-[#F53FA1]">
+                <div className="h-[20%] rounded-t-3xl bg-gradient-to-r from-[#00ECFF]/80 to-[#F53FA1]/80">
                   {/* Card */}
                 </div>
-                <div className="pl-5 pt-[10px] text-[16px] card">
-                  <p>ACTIVITY TYPE: {activity.actType.toUpperCase()}</p>
-                  <p>DATE: {activity.actDate}</p>
-                  <p>ACTIVITY NAME: {activity.actName}</p>
-                  <p>ACTIVITY DESCRIPTION: {activity.actDescription}</p>
-                  <p>ACTIVITY DURATION (Mins): {activity.actDuration}</p>
+                <div className="pl-3 pt-[10px] text-[16px]">
+                  <p className='text-[#00ECFF]/80'>ACTIVITY TYPE : <span className='text-white'>{activity.actType.toUpperCase()}</span></p>
+                  <p className='text-[#00ECFF]/80'>DATE : <span className='text-white'>{activity.actDate}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY NAME : <span className='text-white'>{activity.actName}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY DESCRIPTION : <span className='text-white'>{activity.actDescription}</span></p>
+                  <p className='text-[#00ECFF]/80'>ACTIVITY DURATION (Mins) : <span className='text-white'>{activity.actDuration}</span></p>
                 </div>
               </div>
             ))}
