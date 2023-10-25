@@ -11,6 +11,7 @@ html{
     scroll-behavior: smooth;
     background-image: url("/src/assets/bg.png");
     background-size: cover;
+    /* background-repeat: no-repeat; */
 }
  
 @layer components{

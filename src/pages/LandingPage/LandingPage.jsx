@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const LandingPage = () => {
   return (
     // className="bg-[url('/assets/girl.png')] h-screen bg-no-repeat bg-cover bg-center"
     <div className="">
       {/* section header text */}
-
+      
       <div className="relative h-screen z-10 lg:flex lg:justify-between ">
         <div className="lg:w-[50%] lg:h-full lg:flex lg:flex-col lg:justify-center lg:items-center">
           <div className="text-center lg:flex lg:flex-col">
-            <h1 className=" text-[64px] text-cyan-400 font-bold pt-12 lg:text-[7rem] lg:pt-0">HULK FIT</h1>
+            <h1 className=" text-[64px] text-cyan-400 font-bold pt-6 lg:text-[7rem] lg:pt-0">HULK FIT</h1>
             <h3 className=" text-white font-light pl-6 lg:text-[2rem] lg:pb-10">
               The App That Builds{" "} 
               <div className="hidden lg:flex">
