@@ -94,14 +94,14 @@ const History = () => {
             {apiData.map((items) => (
               <>
                 <div
-                  className={`card w-[30rem] shadow-xl m-10`}
-                  style={{
-                    backgroundImage:
-                    `url(/src/assets/type/desk/${items.actType}.png)`,
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
+                  className={`card w-[30rem] shadow-xl m-10 bg-[url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v1016-c-08_1-ksh6mza3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=f584d8501c27c5f649bc2cfce50705c0)]`}
+                  // style={{
+                  //   backgroundImage:
+                  //   `url(/src/assets/type/desk/${items.actType}.png)`,
+                  //   backgroundSize: 'cover',
+                  //   backgroundRepeat: 'no-repeat',
+                  //   backgroundPosition: 'center',
+                  // }}
                 >
                   <div className='card-body'>
                     <div className='flex flex-row justify-between items-center bg-black/90 rounded-lg px-4'>
