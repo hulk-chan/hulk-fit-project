@@ -23,7 +23,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      //.get(`http://localhost:4000/activitylist/dashboard/column/${userID}`)
       .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/column/${userID}`)
       .then((result) => {
         setAPIData(result.data);
@@ -36,7 +35,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      //.get(`http://localhost:4000/activitylist/dashboard/pie/${userID}`)
       .get(`http://hulkfit-backend-wowi.onrender.com/activitylist/dashboard/pie/${userID}`)
       .then((result) => {
         setAPIDataPie(result.data);
@@ -49,7 +47,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      //.get(`http://localhost:4000/sumofduration/${userID}`)
       .get(`http://hulkfit-backend-wowi.onrender.com/sumofduration/${userID}`)
       .then((result) => {
         setAPIDataSumDuration(result.data);
@@ -62,7 +59,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      //.get(`http://localhost:4000/aggregate/mostact/${userID}`)
       .get(`http://hulkfit-backend-wowi.onrender.com/aggregate/mostact/${userID}`)
       .then((result) => {
         setAPIDataMostAct(result.data);
@@ -75,7 +71,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      //.get(`http://localhost:4000/aggregate/mostduration/${userID}`)
       .get(`http://hulkfit-backend-wowi.onrender.com/aggregate/mostduration/${userID}`)
       .then((result) => {
         setAPIDataMostDuration(result.data);
@@ -112,7 +107,7 @@ each(groupBy(apiData, 'actDate'), (actDuration, k) => {
 
 const configColumn = {
   data:apiData,
-  //isGroup: true,
+  // isGroup: true,
   isStack: true,
   xField: 'actDate',
   yField: 'actDuration',
